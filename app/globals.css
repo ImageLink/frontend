@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+    --chart-1: 262.1 83.3% 57.8%;
+    --chart-2: 291.5 95.8% 71.4%;
+    --chart-3: 246.2 45.8% 55.3%;
+    --chart-4: 280.2 65.5% 47.8%;
+    --chart-5: 315.1 70.3% 67.8%;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
+    --chart-1: 263.4 70% 50.4%;
+    --chart-2: 291.5 95.8% 71.4%;
+    --chart-3: 246.2 45.8% 55.3%;
+    --chart-4: 280.2 65.5% 47.8%;
+    --chart-5: 315.1 70.3% 67.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: radial-gradient(
+      circle at top center,
+      hsl(var(--chart-1) / 0.15) 0%,
+      hsl(var(--chart-2) / 0.05) 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      hsl(var(--chart-1) / 0.5),
+      hsl(var(--chart-2) / 0.5),
+      transparent
+    );
+  }
+
+  .gradient-border {
+    position: relative;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--chart-1)),
+      hsl(var(--chart-2))
+    );
+    z-index: -1;
+    opacity: 0.15;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .card-hover {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+  }
+
+  .card-hover:hover .gradient-border::before {
+    opacity: 0.3;
+  }
+
+  .glass-effect {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .animate-gradient {
+    background: linear-gradient(
+      270deg,
+      hsl(var(--chart-1)),
+      hsl(var(--chart-2)),
+      hsl(var(--chart-3)),
+      hsl(var(--chart-1))
+    );
+    background-size: 300% 100%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--chart-1))] via-[hsl(var(--chart-2))] to-[hsl(var(--chart-3))];
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .purple-glow {
+    box-shadow: 0 0 20px hsl(var(--chart-1) / 0.2);
+  }
+
+  .purple-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--chart-1) / 0.3);
+  }
+}
